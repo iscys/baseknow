@@ -3,6 +3,7 @@ package com.baseknow.map;
 import java.util.HashMap;
 
 
+
 /**
  *<p> HashMap 源码分析篇，我的博客地址：
  *<p> <a>https://www.cnblogs.com/iscys/p/10012187.html</a>
@@ -15,7 +16,33 @@ public class HashMapDoc {
 
 	public static void main(String[] args) {
 		HashMapDoc doc =new HashMapDoc();
-		doc.put("rty", "323");
+		doc.put("r15ty", "323");
+		doc.put("rtr8y3", "323");
+		doc.put("rtr7y3", "323");
+		doc.put("rt6ry3", "323");
+		doc.put("r4try3", "323");
+		doc.put("rt3ry3", "323");
+		doc.put("rtr2y3", "323");
+		doc.put("rtr1y3", "323");
+		doc.put("rtry93", "323");
+		doc.put("rtry83", "323");
+		doc.put("rtry73", "323");
+		doc.put("rtry63", "323");
+		doc.put("rtry53", "323");
+		doc.put("rtry43", "323");
+		doc.put("rtry33", "323");
+		doc.put("rtry23", "323");
+		doc.put("rtry13", "323");
+		
+		
+		//0000-1111
+		//0001-0000
+		//0000-1010
+		//0001-0100
+		//100000
+		//000101
+		//System.out.println("eertiri".hashCode() & 32);
+		System.out.println(75483495 & 63);
 		
 	}
 	/**
@@ -64,12 +91,14 @@ public class HashMapDoc {
 	//元素添加操作,如果有替换的操作，返回旧的值
 	public Object put (Object key,Object value) {
 		//计算hash
-		int h = 0;
-		System.out.println(key.hashCode());
-		h=(key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
-		return  putval(h,key,value);
+		
+		return  putval(hash(key),key,value);
 		
 	}
+	  static final int hash(Object key) {
+	        int h;
+	        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+	    }
 
 	private Object putval(int hash, Object key, Object value) {
 		Node [] tab;
@@ -144,7 +173,7 @@ public class HashMapDoc {
 	        int newCap, newThr = 0;
 	        //2倍的扩容 16 -32-64
 	        if((newCap =oldCap<<1)<MAXIMUM_CAPACITY && oldCap>=DEFAULT_SIZE) {
-	        	newThr = oldThr <<1 ; //也是两倍
+	        	threshold = oldThr <<1 ; //也是两倍
 	        }
 	        Node [] newTable =new Node[newCap];
 	        tables =newTable; 
@@ -162,8 +191,36 @@ public class HashMapDoc {
 	        			}
 	        			else {
 	        				//否则就是原来的数组中存在链表
-	        				
-	        				
+	        				Node loHead = null, loTail = null;
+	                        Node hiHead = null, hiTail = null;
+	                        Node next;
+	                        do {
+	                        next =v.next;
+	                        if((v.hash & oldCap )==0) {
+	                        	if(loHead ==null) {
+	                        		loHead=v;
+	                        	}else {
+	                        		loHead.next=v;
+	                        		loTail=v;
+	                        	}
+	                        }
+	                        else {
+                                if (hiTail == null)
+                                    hiHead = v;
+                                else
+                                    hiTail.next = v;
+                                hiTail = v;
+                            }
+	                        }
+	                        while((v=next)!=null);
+	                        if (loTail != null) {
+	                            loTail.next = null;
+	                            newTable[j] = loHead;
+	                        }
+	                        if (hiTail != null) {
+	                            hiTail.next = null;
+	                            newTable[j + oldCap] = hiHead;
+	                        }
 	        				
 	        				
 	        			}
