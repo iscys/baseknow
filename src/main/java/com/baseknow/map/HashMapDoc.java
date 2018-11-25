@@ -22,7 +22,7 @@ public class HashMapDoc {
 		doc.put("rt6ry3", "323");
 		doc.put("r4try3", "323");
 		doc.put("rt3ry3", "323");
-		doc.put("rtr2y3", "323");
+		doc.put("rtr2y3", "3290888223");
 		doc.put("rtr1y3", "323");
 		doc.put("rtry93", "323");
 		doc.put("rtry83", "323");
@@ -32,8 +32,9 @@ public class HashMapDoc {
 		doc.put("rtry43", "323");
 		doc.put("rtry33", "323");
 		doc.put("rtry23", "323");
-		doc.put("rtry13", "323");
-		
+		doc.put("rtry13", "329993");
+		Object object = doc.get("rtr2y3");
+		System.err.println(object);
 		
 		//0000-1111
 		//0001-0000
@@ -196,6 +197,7 @@ public class HashMapDoc {
 	                        Node next;
 	                        do {
 	                        next =v.next;
+	                        //位置不变
 	                        if((v.hash & oldCap )==0) {
 	                        	if(loHead ==null) {
 	                        		loHead=v;
@@ -205,6 +207,7 @@ public class HashMapDoc {
 	                        	}
 	                        }
 	                        else {
+	                        	//位置改变
                                 if (hiTail == null)
                                     hiHead = v;
                                 else
@@ -232,8 +235,34 @@ public class HashMapDoc {
 	        
 	        
 		
-	}
+	};
 	
+	
+	
+	
+	Object get(Object key) {
+		//先算hash 
+		int hash = hash(key);
+		Node [] table ;
+		Node first;
+		Node e;
+		int n;
+		if((table=tables)!=null && (n=table.length)>0 && (first =table[(n-1) &hash])!=null) {
+			if(first.hash==hash && (first.key).equals(key)) {
+				return first.value;
+			}
+			if((e=first.next)!=null) {
+				do {
+					if(first.hash==hash && (first.key).equals(key)) {
+						return first.value;
+					}
+				}
+				while((e=e.next)!=null);
+			}
+		}
+		
+		return null;
+	}
 	
 	
 	
