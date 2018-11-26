@@ -1,5 +1,9 @@
 package com.baseknow.spring;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -10,6 +14,8 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.baseknow.utils.JdkProxy;
 
 
 /**
@@ -32,7 +38,8 @@ public class BeanDefinitionRegistryDoc implements BeanDefinitionRegistryPostProc
 	ApplicationContext app = new ClassPathXmlApplicationContext("classpath:springTest/my.xml");
 		
 	Object bean = app.getBean("testInterface");
-	System.out.println(bean instanceof TestInterface);
+	System.out.println(bean);
+	System.out.println(bean instanceof TestInterface );
 	}
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -78,7 +85,8 @@ class BeanFactory implements FactoryBean{
 	@Override
 	public Object getObject() throws Exception {
 		System.out.println("---------getObject");
-		return "1";
+		//jdk代理
+		return getProxy().newProxy(needProxyInterface);
 	}
 
 	@Override
@@ -91,6 +99,10 @@ class BeanFactory implements FactoryBean{
 		return true;
 	}
 	
+	InterfaceProxy getProxy(){
+		return new InterfaceProxy();
+	}
+	
 }
 
 interface TestInterface{
@@ -98,4 +110,15 @@ interface TestInterface{
 	void testMethod();
 }
 
+/**
+ * JDK 动态代理
+ */
+
+class InterfaceProxy extends JdkProxy{	
+	@Override
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		return "111";
+	}
+	
+}
 
