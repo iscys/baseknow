@@ -43,7 +43,7 @@ public class HashMapDoc {
 		//100000
 		//000101
 		//System.out.println("eertiri".hashCode() & 32);
-		System.out.println(75483495 & 63);
+		System.out.println(5 & 16);
 		
 	}
 	/**
