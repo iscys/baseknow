@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * JDK 动态代理模版通用方法,
+ * JDK 动态代理模版通用方法,接口代理
  * 具体功能再进行增加
  * @author iscys
  *
