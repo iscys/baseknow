@@ -51,11 +51,13 @@ public class BeanDefinitionRegistryDoc implements BeanDefinitionRegistryPostProc
 	 * 通过这个方法将我们自定义的bean 进行加载进来
 	 */
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+		//bean的定义
 		GenericBeanDefinition beanDefinition =new GenericBeanDefinition();
 		//设置bean class对象交给BeanFactory 进行创建
 		beanDefinition.setBeanClass(BeanFactory.class);
 		//也可以给置顶bean 进行属性的添加
 		beanDefinition.getPropertyValues().addPropertyValue("needProxyInterface", "com.baseknow.spring.TestInterface");
+		//注册到bean工厂中将bean
 		registry.registerBeanDefinition("testInterface", beanDefinition);
 	}
 
