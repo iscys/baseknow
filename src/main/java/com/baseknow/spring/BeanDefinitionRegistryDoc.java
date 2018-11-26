@@ -37,7 +37,7 @@ public class BeanDefinitionRegistryDoc implements BeanDefinitionRegistryPostProc
 	public static void main(String[] args) {
 	ApplicationContext app = new ClassPathXmlApplicationContext("classpath:springTest/my.xml");
 		
-	Object bean = app.getBean("testInterface");
+	TestInterface bean = (TestInterface) app.getBean("testInterface");
 	System.out.println(bean);
 	System.out.println(bean instanceof TestInterface );
 	}
@@ -55,7 +55,7 @@ public class BeanDefinitionRegistryDoc implements BeanDefinitionRegistryPostProc
 		GenericBeanDefinition beanDefinition =new GenericBeanDefinition();
 		//设置bean class对象交给BeanFactory 进行创建
 		beanDefinition.setBeanClass(BeanFactory.class);
-		//也可以给置顶bean 进行属性的添加
+		//也可以给置顶bean 进行属性的添加，底层是一个arraylist
 		beanDefinition.getPropertyValues().addPropertyValue("needProxyInterface", "com.baseknow.spring.TestInterface");
 		//注册到bean工厂中将bean
 		registry.registerBeanDefinition("testInterface", beanDefinition);
