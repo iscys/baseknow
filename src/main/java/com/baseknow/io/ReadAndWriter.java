@@ -11,7 +11,7 @@ import org.apache.commons.io.IOUtils;
 import com.baseknow.utils.ResourceUtils;
 
 /**
- * IO操作对于文件的读和写操作；
+ * IO字节流操作对于文件的读和写操作；
  * @author iscys
  *
  */
