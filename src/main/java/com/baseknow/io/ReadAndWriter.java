@@ -52,6 +52,17 @@ public class ReadAndWriter {
 		out.close();
 		fileInput3.close();
 		
+		
+		//--------------IOUtils 中也实现了对文件流之间拷贝对封装----------///
+				File file4 = ResourceUtils.getFile("readme.txt");
+				//获取文件的输入流；
+				FileInputStream fileInput4 =new FileInputStream(file);
+				//获取文件的输出流
+				FileOutputStream out4 =new FileOutputStream("me.txt");
+				IOUtils.copy(fileInput4, out4);
+				out4.close();
+				fileInput4.close();
+		
 	}
 	
 	
