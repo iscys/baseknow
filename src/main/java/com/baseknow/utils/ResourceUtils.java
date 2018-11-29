@@ -3,6 +3,7 @@ package com.baseknow.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.springframework.util.StringUtils;
@@ -35,22 +36,23 @@ public class ResourceUtils {
 		}
 		else {
 			//创建classpath 目录下的文件对象,utils使用spring的
-			URI uri = new URI(StringUtils.replace(url.toString(), " ", "%20"));
+			URI uri = toURI(url.toString());
 			return new File(uri.getSchemeSpecificPart());
 			
 		}
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 创建URL实例为给定的location
+	 * @param location
+	 * @return
+	 * @throws URISyntaxException
+	 */
+	public static URI toURI(String location) throws URISyntaxException {
+		return new URI(StringUtils.replace(location, " ", "%20"));
+	}
+
 	
 	
 	
@@ -63,6 +65,7 @@ public class ResourceUtils {
 	 */
 	
 	public static  ClassLoader getClassLoader() {
+		
 		
 		ClassLoader loader = null;
 		try {
