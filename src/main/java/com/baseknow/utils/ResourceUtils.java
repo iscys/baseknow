@@ -8,7 +8,11 @@ import java.net.URL;
 
 import org.springframework.util.StringUtils;
 
-
+/**
+ * spring 提供的文件工具类->FileSystemContextResource
+ * @author iscys
+ *
+ */
 public class ResourceUtils {
 	
 	
