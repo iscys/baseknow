@@ -39,7 +39,7 @@ public class BeanDefinationDoc implements BeanDefinitionRegistryPostProcessor {
 		 * <bean calss="com.baseknow.testclass.TestClass">
 		 * 然后我在这里设置gener.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 		 * 之后，
-		 * 在Spring加载的时候，如果我这个类中有TestClass 的属性，并且有set方法，就会自动注入到
+		 * 在Spring加载的时候，如果我这个BeanDefinitionClass02类中有TestClass 的属性，并且有set方法，就会自动注入到
 		 * 我的类中；
 		 */
 		gener.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
