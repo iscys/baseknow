@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thirdparty.sqlmapper.android.ImageDisplayMapper">
+	   
+	 
+	 <!-- 得到图片信息 -->
+    <select id="getImagesByType" parameterType="com.entity.android.Images" resultType="java.util.HashMap">
+    
+    	select id, url,is_effective,createtime from sdb_dianlu_image
+		where 1=1
+		<if test="type != null and type != '' ">
+			   and type=#{type}
+		</if>
+		<if test="is_effective != null and is_effective != '' ">
+		and is_effective=#{is_effective}
+		</if>
+    </select>
+    
+    
+    
+    
+    
+</mapper>

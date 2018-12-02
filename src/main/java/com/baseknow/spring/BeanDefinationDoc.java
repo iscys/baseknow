@@ -44,7 +44,7 @@ public class BeanDefinationDoc implements BeanDefinitionRegistryPostProcessor {
 		 */
 		gener.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 		/**
-		 * 将定义的bean 注册到Spring 容器中，被Spring 管理
+		 * 将定义的bean 注册到Spring 容器中，被Spring 管理，这样就可以将我们自定义的bean 被Spring容器管理，
 		 */
 		registry.registerBeanDefinition("testBefinition", gener);
 	}
