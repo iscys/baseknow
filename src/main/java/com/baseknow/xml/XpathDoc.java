@@ -30,11 +30,17 @@ public class XpathDoc {
 		  XPath xpath = factory.newXPath();
 		  Node evaluate = (Node)xpath.evaluate("/mapper", document,XPathConstants.NODE);
 		  System.out.println(evaluate.getAttributes().item(0).getNodeName());
-		  Node evaluate2 = (Node) xpath.evaluate("select", evaluate, XPathConstants.NODE);
+		  Node evaluate2 = (Node) xpath.evaluate("select|delete", evaluate, XPathConstants.NODE);
 		 // System.out.println(evaluate2.getTextContent());
 		  NodeList evaluate3 = (NodeList) xpath.evaluate("select|insert|update|delete", evaluate, XPathConstants.NODESET);
-		  String select = evaluate3.item(0).getTextContent();
-		  System.out.println(select);
+		  Node item = evaluate3.item(0);
+		  NodeList childNodes = item.getChildNodes();
+		  System.out.println(childNodes.getLength());
+		  for(int i =0;i<childNodes.getLength();i++) {
+			  Node item2 = childNodes.item(i);
+			  System.out.println(item2.getTextContent());
+		  }
+		  System.out.println(childNodes);
 		  
 	}
 	

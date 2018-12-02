@@ -9,11 +9,11 @@
     	select id, url,is_effective,createtime from sdb_dianlu_image
 		where 1=1
 		<if test="type != null and type != '' ">
-			   and type=#{type}
-		</if>
+			   and type=#{type}	
+	</if>
 		<if test="is_effective != null and is_effective != '' ">
 		and is_effective=#{is_effective}
-		</if>
+		</if>	
     </select>
     
     

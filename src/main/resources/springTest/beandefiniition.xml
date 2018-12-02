@@ -15,11 +15,9 @@
         
     
   
-  	<bean class="com.baseknow.spring.BeanDefinationDoc">
-  	
+  	<bean class="com.baseknow.spring.BeanDefinationDoc"></bean>
+  	<bean class="com.baseknow.testclass.TestClass">
   	</bean>
-    
-    <bean class="com.baseknow.testclass.TestClass"></bean>
-    
-        </beans>
+  	
+  	 </beans>
         
