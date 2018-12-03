@@ -24,12 +24,10 @@ public class JaxpDomDoc {
 	
 	public static void main(String[] args) throws Exception {
 		//obtain 工厂对象
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		//obtain DocumentBuilder via DocumentBuilderFactory
-		DocumentBuilder docBuilder = factory.newDocumentBuilder();
+		
 		File file = ResourceUtils.getFile("springTest/beandefiniition.xml");
 		//获取document 对象
-		Document parse = docBuilder.parse(file);
+		Document parse = XmlParseUtils.getJaxpDocumentViaFile(null, file);
 		//查询节点
 		NodeList elementsByTagName = parse.getElementsByTagName("bean");
 		
