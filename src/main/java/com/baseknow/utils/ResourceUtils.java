@@ -2,9 +2,11 @@ package com.baseknow.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Properties;
 
 import org.springframework.util.StringUtils;
 
@@ -57,7 +59,32 @@ public class ResourceUtils {
 		return new URI(StringUtils.replace(location, " ", "%20"));
 	}
 
+
+	/**
+	 * 项目classpath 目录下单个 的文件加载到properties 中，
+	 * @param resouceName   fromatLocation:properties/properties
+	 * @return
+	 * @throws IOException 
+	 * @throws Exception 
+	 */
 	
+	public static Properties loadSingleProperties(String resouceName) throws IOException {
+		
+		notNull(resouceName, "文件名不能为空");
+		InputStream  is = null;
+		Properties prop =new Properties();
+		ClassLoader loader = getClassLoader();
+		try {
+		is = loader.getResourceAsStream(resouceName);
+		prop.load(is);
+		}
+		finally {
+			is.close();
+		}
+		
+		return prop;
+		
+	}
 	
 	
 	
