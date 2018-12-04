@@ -10,14 +10,9 @@ public class Dom4jDoc {
 	
 	public static void main(String[] args) throws Exception {
 	
-		File file = ResourceUtils.getFile("springTest/beandefiniition.xml");
-		
+		File file = ResourceUtils.getFile("springTest/beandefiniition.xml");		
 		Document doc = XmlParseUtils.getDom4jDocument(file);
 		System.out.println(doc.getRootElement());
-		
-		
-		
-		
 	}
 
 }
