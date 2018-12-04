@@ -57,34 +57,25 @@ public class XmlParseUtils {
 	}
 	
 	/**
-	 * jaxp 获取Document 对象,通过一个文件对象
+	 * jaxp 获取Document 对象,通过一个文件/流对象
 	 * @throws ParserConfigurationException 
 	 * @throws IOException 
 	 * @throws SAXException 
 	 */
-	public static Document getJaxpDocumentViaFile(DocumentBuilder builder,File file) throws Exception {
+	public static Document getJaxpDocument(DocumentBuilder builder,Object file) throws Exception {
 		DocumentBuilder xmlBuilder;
 		if((xmlBuilder=builder)==null) {
 			xmlBuilder=getJaxpXmlBuilder();
 		}
-		return xmlBuilder.parse(file);
-		
+		if(file instanceof File) {
+			return xmlBuilder.parse((File)file);
+		}else if(file instanceof InputStream) {
+			return xmlBuilder.parse((InputStream)file);
+		}else {
+			return null;
+		}
 	}
 	
-	/**
-	 * jaxp 获取Document 对象,通过一个输入流
-	 * @throws ParserConfigurationException 
-	 * @throws IOException 
-	 * @throws SAXException 
-	 */
-	public static Document getJaxpDocumentViaStream(DocumentBuilder builder,InputStream stream) throws Exception {
-		DocumentBuilder xmlBuilder;
-		if((xmlBuilder=builder)==null) {
-			xmlBuilder=getJaxpXmlBuilder();
-		}
-		return xmlBuilder.parse(stream);
-		
-	}
 	
 	/**
 	 * dom4j
