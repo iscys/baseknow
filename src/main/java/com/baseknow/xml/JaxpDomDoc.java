@@ -27,7 +27,7 @@ public class JaxpDomDoc {
 		
 		File file = ResourceUtils.getFile("springTest/beandefiniition.xml");
 		//获取document 对象
-		Document parse = XmlParseUtils.getJaxpDocumentViaFile(null, file);
+		Document parse = XmlParseUtils.getJaxpDocument(null, file);
 		//查询节点
 		NodeList elementsByTagName = parse.getElementsByTagName("bean");
 		
