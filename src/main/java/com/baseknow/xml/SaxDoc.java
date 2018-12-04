@@ -17,7 +17,7 @@ public class SaxDoc {
 	
 	public static void main(String[] args) throws Exception {
 		File file = ResourceUtils.getFile("springTest/ImageDisplayMapper.xml");
-		Document doc = XmlParseUtils.getJaxpDocumentViaFile(null, file);
+		Document doc = XmlParseUtils.getJaxpDocument(null, file);
 		XPath xpath = XmlParseUtils.getXpath();
 		Node evaluate = (Node) xpath.evaluate("/mapper/select", doc,XPathConstants.NODE);
 		
