@@ -51,10 +51,11 @@ public class Niodoc {
 	/**
 	 *字符编码
 	 * @throws IOException 
+	 * 文件用什么编的码，在解码的时候就用什么解码；
 	 */
 	public  static void charset() throws IOException{
 		FileChannel ch = FileChannel.open(Paths.get("me.txt"), StandardOpenOption.READ);//读模式
-		Charset forName = Charset.forName("GBK");
+		Charset forName = Charset.forName("UTF-8");
 		
 		ByteBuffer byteb =ByteBuffer.allocate(2048);
 		ch.read(byteb);
