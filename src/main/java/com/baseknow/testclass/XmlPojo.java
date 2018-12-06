@@ -15,9 +15,6 @@ public class XmlPojo {
 	@XStreamAlias("items")
 	private List<Msg> msg;
 	
-	
-	
-	
 	public XmlPojo(String times,String unionid,String openid){
 		this.times =times;
 		this.unionid =unionid;

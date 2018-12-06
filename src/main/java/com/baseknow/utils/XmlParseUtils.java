@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
+
+import org.apache.commons.io.IOUtils;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -95,6 +97,16 @@ public class XmlParseUtils {
 		
 	}
 	
+	/**
+	 * 使用common 包将流转换为字符串
+	 * @param stream
+	 * @return
+	 * @throws Exception
+	 */
+	public static String xmlStreamToString (InputStream stream) throws Exception{
+		String result =IOUtils.toString(stream, "utf-8");
+		return result;
+		}
 	
 	
 	
