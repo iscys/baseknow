@@ -21,7 +21,11 @@ public class Jvm1 {
 		System.out.println("总共内存"+Runtime.getRuntime().totalMemory());
 		System.out.println("最大内存"+Runtime.getRuntime().maxMemory());
 		System.out.println("空闲内存"+Runtime.getRuntime().freeMemory());
-		
+
+
+
+
+
 		
 		byte [] by =new byte[1*1024*1024];
 		System.out.println("分配了1m");
