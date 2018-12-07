@@ -20,6 +20,7 @@ public class ReadAndWriter {
 	public static void main(String[] args) throws Exception {
 		
 		haveBuffer();
+
 		
 	}
 
