@@ -39,7 +39,7 @@ public class Niodoc {
 		
 	}
 	/**
-	 * 文件映射
+	 * transferTo
 	 * @throws IOException 
 	 */
 	public  static void FileMap() throws IOException{

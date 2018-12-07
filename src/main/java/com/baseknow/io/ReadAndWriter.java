@@ -19,6 +19,15 @@ public class ReadAndWriter {
 	
 	public static void main(String[] args) throws Exception {
 		
+		haveBuffer();
+		
+	}
+
+	/**
+	 * 无缓冲区的方法
+	 * @throws Exception
+	 */
+	public static void noBufferMethod() throws Exception {
 		File file = ResourceUtils.getFile("readme.txt");
 		//获取文件的输入流；
 		FileInputStream fileInput =new FileInputStream(file);
@@ -65,7 +74,28 @@ public class ReadAndWriter {
 		
 	}
 	
-	
+	/**
+	 * 带缓冲区的,
+	 * h=fileInput.read(b)
+	 * h返回读取的字节个数
+	 * @throws Exception 
+	 */
+	public static void haveBuffer() throws Exception{
+		File file = ResourceUtils.getFile("readme.txt");
+		//获取文件的输入流；
+		FileInputStream fileInput =new FileInputStream(file);
+		//获取文件的输出流
+		FileOutputStream out =new FileOutputStream("me.txt");
+		byte [] b = new byte[2048];
+		int h;
+		while((h=fileInput.read(b))!=-1) {
+			System.out.println(h);
+			out.write(b, 0, h);
+		}
+		
+		out.close();
+		fileInput.close();
+	}
 	
 
 }
