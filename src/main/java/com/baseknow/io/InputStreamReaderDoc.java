@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 
 /**
  * 字节流转换为字符流的桥梁
+ * InputStreamReader
+ * OutputStreamWriter
  */
 public class InputStreamReaderDoc {
 
