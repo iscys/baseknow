@@ -1,3 +1,4 @@
+
 package com.baseknow.list;
 
 import java.util.ArrayList;
@@ -14,3 +15,4 @@ public class ArrayListDoc {
 		});
 	}
 }
+
