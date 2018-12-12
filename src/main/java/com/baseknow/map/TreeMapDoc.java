@@ -101,7 +101,31 @@ public class TreeMapDoc<K,V> {
 			return null;
 		}
 
+	/**
+	 * 得到最小的节点
+	 */
 
+	public AclNode<K,V> getFirstNode(AclNode<K,V> node){
+		AclNode<K,V> p =node;
+		if(p!=null){
+			while(p.left!=null){
+				p=p.left;
+			}
+		}
+		return p;
+	}
+	/**
+	 * 得到最大节点
+	 */
+	public AclNode<K,V> getLastNode(AclNode<K,V> node){
+		AclNode<K,V> p =node;
+		if(p!=null){
+			while(p.right!=null){
+				p=p.right;
+			}
+		}
+		return p;
+	}
 }
 
 
