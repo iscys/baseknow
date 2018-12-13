@@ -100,6 +100,25 @@ public class TreeMapDoc<K,V> {
 			}
 			return null;
 		}
+	/**
+	 * 删除
+	 */
+	public void delete(K key){
+		AclNode<K, V> p = root;
+
+		while (p != null) {
+			int ex = compare(key, p.k);
+			if (ex < 0) {
+				p = p.left;
+			} else if (ex > 0) {
+				p = p.right;
+			} else {
+				
+			}
+		}
+
+
+	}
 
 	/**
 	 * 得到最小的节点
@@ -126,6 +145,24 @@ public class TreeMapDoc<K,V> {
 		}
 		return p;
 	}
+
+
+    /**
+     * remove
+     */
+
+    public V remove(K key){
+
+        AclNode<K, V> entity = getEntity(key);
+        if(entity!=null){
+
+            if(entity.left !=null && entity.right !=null){
+                AclNode<K, V> rightMin = getFirstNode(entity.right);
+            }
+        }
+
+
+    }
 }
 
 
