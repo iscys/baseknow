@@ -9,10 +9,12 @@ import java.util.TreeMap;
 public class TreeMapDoc2 {
 
     public static void main(String[] args) {
-        TreeMap<Isneedcompare, String> tree = new TreeMap<>();
-        tree.put(new Isneedcompare(),"qwe");
-        tree.put(new Isneedcompare(),"qwe");
-
+        TreeMapDoc doc =new TreeMapDoc();
+        doc.put("qwe","qwe");
+        doc.put("qweq","qwew");
+        doc.put("qwet","qwe");
+        AclNode qwe = doc.getEntity("qweq");
+        System.out.println(qwe.v);
 
 
     }
