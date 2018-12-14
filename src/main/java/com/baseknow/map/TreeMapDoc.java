@@ -1,5 +1,7 @@
 package com.baseknow.map;
 
+import javafx.scene.Parent;
+
 import java.util.Comparator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -45,11 +47,13 @@ public class TreeMapDoc<K,V> {
 	 */
 	public void put(K key, V value) {
 		if (null == root) {
-			root = new AclNode(key, value);
+			root = new AclNode(key, value,null);
 			++size;
 		} else {
 			AclNode<K, V> p = root;
+			AclNode<K, V> parent;
 			while (null != p) {
+				parent=p;
 				int ex = compare(key, p.k);
 				if (ex == 0) {
 					p.setValue(value);
@@ -155,12 +159,24 @@ public class TreeMapDoc<K,V> {
 
         AclNode<K, V> entity = getEntity(key);
         if(entity!=null){
+        	if(entity.right==null && entity.left==null){
+				entity=null;
+			}
+        	else if(entity.right==null && entity.left !=null){
+        		entity=entity.left;
+			}
+        	else if(entity.right!=null && entity.left ==null){
+				entity=entity.right;
+			}
 
             if(entity.left !=null && entity.right !=null){
                 AclNode<K, V> rightMin = getFirstNode(entity.right);
+
+                entity.k=rightMin.k;
+                entity.v=rightMin.v;
             }
         }
-
+		return entity.v;
 
     }
 }
@@ -177,10 +193,14 @@ public class TreeMapDoc<K,V> {
  * @param <V>
  */
 class AclNode<K,V> implements Entry<K, V>{
+	private static final boolean RED   = false;
+	private static final boolean BLACK = true;
 	 K k;
 	 V v;
 	 AclNode<K,V> left;
 	 AclNode<K,V> right;
+	 AclNode<K,V> parent;//父亲节点
+	boolean color =	BLACK;
 	
 	
 	@Override
@@ -192,6 +212,13 @@ class AclNode<K,V> implements Entry<K, V>{
 		super();
 		this.k = k;
 		this.v = v;
+	}
+
+	public AclNode(K k, V v,AclNode parent) {
+		super();
+		this.k = k;
+		this.v = v;
+		this.parent=parent;
 	}
 
 	public K getKey() {
