@@ -43,6 +43,9 @@ public class LinkedListStack {
 
     /**
      * 利用栈进行十进制转二进制
+     * 先进后出
+     * push()-头放入元素
+     * poll()-头取元素
      */
     public static  Deque<Integer> invocation (int param){
         Deque<Integer> queue =new LinkedList<>();
