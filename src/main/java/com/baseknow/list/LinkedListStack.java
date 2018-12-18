@@ -19,7 +19,7 @@ public class LinkedListStack {
     }
 
     /**
-     * push（） poll（）--> ArrayList 进行栈的操作，
+     * push（） poll（）--> ArrayList 进行栈的操作，(后进先出)
      * peek() 获取顶端元素；
      *
      * 先进后出的原则
@@ -61,6 +61,70 @@ public class LinkedListStack {
      return queue;
 
     }
+
+    /**
+     * 设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。
+     *
+     * push(x) -- 将元素 x 推入栈中。
+     * pop() -- 删除栈顶的元素。
+     * top() -- 获取栈顶元素。
+     * getMin() -- 检索栈中的最小元素。
+     * 示例:
+     *
+     * MinStack minStack = new MinStack();
+     * minStack.push(-2);
+     * minStack.push(0);
+     * minStack.push(-3);
+     * minStack.getMin();   --> 返回 -3.
+     * minStack.pop();
+     * minStack.top();      --> 返回 0.
+     * minStack.getMin();   --> 返回 -2.
+     */
+    static class MinStack {
+
+        /** initialize your data structure here. */
+        public  LinkedList<Integer>  list;
+        public  LinkedList<Integer>  minStack = new LinkedList<>();
+        Integer min;
+        public MinStack() {
+            list = new LinkedList<>();
+
+        }
+
+        public void push(int x) {
+            if(min == null){
+                min=x;
+                minStack.push(x);
+            }else{
+                if(x<=min){
+                    min=x;
+                    minStack.push(x);
+
+                } else{
+                    minStack.offer(x);
+                }
+            }
+            list.push(x);
+        }
+
+        public void pop() {
+            int a=list.pop();
+            if(a==min){
+                minStack.pop();
+                min=minStack.peek();
+            }
+        }
+
+        public int top() {
+            return list.peek();
+        }
+
+        public int getMin() {
+
+            return min;
+        }
+    }
+
 
 
 }
