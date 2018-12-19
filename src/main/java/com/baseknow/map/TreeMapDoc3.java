@@ -1,7 +1,11 @@
 package com.baseknow.map;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class TreeMapDoc3 {
 
+    public static List<Integer> li =new LinkedList<>();
     /**
      * 给定一个二叉树，找出其最大深度。
      *
@@ -32,6 +36,59 @@ public class TreeMapDoc3 {
         }
 
     }
+
+    /**
+     * 二叉树的前序遍历
+     * 从根节点开始->左->右
+     */
+    public static List<Integer>  preTravel(TreeNode node){
+
+
+        if( null !=node){
+            li.add(node.val);
+            preTravel(node.left);
+            preTravel(node.right);
+        }
+        return li;
+    }
+
+
+    /**
+     * 后续遍历
+     */
+
+    public static List<Integer>  postTravel(TreeNode node){
+
+
+        if( null !=node){
+            postTravel(node.left);
+            postTravel(node.right);
+            li.add(node.val);
+        }
+        return li;
+    }
+
+    /**
+     * 二叉树的中序遍历
+     */
+    public static List<Integer>  cenTravel(TreeNode node){
+
+
+        if( null !=node){
+            cenTravel(node.left);
+            li.add(node.val);
+            cenTravel(node.right);
+        }
+        return li;
+    }
+
+    /**
+     * 层序遍历：
+     * 数的每一层每一层的进行查找
+     * 采用栈进行遍历
+     */
+
+
 
      class TreeNode {
       int val;
