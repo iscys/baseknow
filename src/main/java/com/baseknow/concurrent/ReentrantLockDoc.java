@@ -1,6 +1,8 @@
 package com.baseknow.concurrent;
 
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,10 +20,17 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ReentrantLockDoc {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ReentrantLock lock =new ReentrantLock();
         Condition isFull = lock.newCondition();
         Condition isEmpty = lock.newCondition();
+        //CyclicBarrier
+        CountDownLatch count =new CountDownLatch(4);
+        count.countDown();
+        count.countDown();
+        count.countDown();
 
+        count.await();
+        System.out.println("ss");
     }
 }
