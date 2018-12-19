@@ -15,8 +15,8 @@ public class AtomicIntegerDoc {
 		ato.incrementAndGet();//+1自增
 		System.err.println(ato.getAndIncrement());//获取值并+1
 		ato.incrementAndGet();
-		System.out.println(ato.get());//知只是获取当前值
-		ato.incrementAndGet();
+		System.err.println(ato.get());//知只是获取当前值
+		ato.decrementAndGet();//减去1
 		System.out.println(ato.get());
 		
 	}
