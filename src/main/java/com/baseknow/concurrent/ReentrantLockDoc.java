@@ -32,7 +32,6 @@ public class ReentrantLockDoc {
             public void run() {
                 lock.lock();
                 System.out.println("1111");
-                lock.unlock();
             }
         }).start();
 
@@ -42,6 +41,20 @@ public class ReentrantLockDoc {
                 lock.lock();
                 System.out.println("2222");
 
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                System.out.println("44444");
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                System.out.println("333");
             }
         }).start();
 
