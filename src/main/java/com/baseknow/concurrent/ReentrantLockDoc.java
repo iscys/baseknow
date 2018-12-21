@@ -19,6 +19,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * }
  *
  * condition 代替 原始的wait(). notify().notifyAll();
+ * cnnlogs:https://www.cnblogs.com/iscys/p/10152885.html
  */
 public class ReentrantLockDoc {
 
@@ -27,37 +28,6 @@ public class ReentrantLockDoc {
     public static void main(String[] args) throws Exception {
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lock.lock();
-                System.out.println("1111");
-            }
-        }).start();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lock.lock();
-                System.out.println("2222");
-
-            }
-        }).start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lock.lock();
-                System.out.println("44444");
-            }
-        }).start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                lock.lock();
-                System.out.println("333");
-            }
-        }).start();
-
 
 
 
@@ -65,13 +35,29 @@ public class ReentrantLockDoc {
         Condition isFull = lock.newCondition();
         Condition isEmpty = lock.newCondition();
         //CyclicBarrier
-        CountDownLatch count =new CountDownLatch(4);
+       final CountDownLatch count =new CountDownLatch(4);
         count.countDown();
         count.countDown();
         count.countDown();
+
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    count.await();
+                    System.out.println("ss");
+                }catch(Exception e){}
+
+            }
+        }).start();
+
+
         count.countDown();
-        count.await();
-        System.out.println("ss");
+
+        System.out.println("ff");
 
     }
 }
