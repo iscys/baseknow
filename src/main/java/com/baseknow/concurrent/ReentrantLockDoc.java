@@ -29,6 +29,61 @@ public class ReentrantLockDoc {
 
 
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    lock.lock();
+                    System.out.println("ss");
+                    Thread.sleep(2000);
+
+                    lock.unlock();
+                    System.out.println("unlockok");
+
+                }catch(Exception e){}
+
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(2000);
+                    lock.lock();
+                    System.out.println("last");
+                    lock.unlock();
+                }catch(Exception e){}
+
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(1800);
+                    lock.lock();
+                    System.out.println("ss1");
+
+
+                }catch(Exception e){}
+
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(1800);
+                    lock.lock();
+                    System.out.println("ss2");
+                    lock.unlock();
+                }catch(Exception e){}
+
+            }
+        }).start();
+
 
 
 
@@ -43,21 +98,11 @@ public class ReentrantLockDoc {
 
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    count.await();
-                    System.out.println("ss");
-                }catch(Exception e){}
-
-            }
-        }).start();
 
 
         count.countDown();
 
-        System.out.println("ff");
+       // System.out.println("ff");
 
     }
 }
