@@ -191,6 +191,23 @@ public boolean hasCycle(ListNode head) {
         }
     }
 
+    /**
+     * 反转单向链表
+     * @param head
+     * @return
+     */
+    public ListNode reverseList(ListNode head) {
 
+        ListNode NodeHead = null;
+        ListNode p =head;
+        while(p !=null){
+            ListNode next =p.next;//获取下一个节点
+            p.next=NodeHead;//设置新的下一个节点
+            NodeHead =p;//新的节点对象
+            p=next;//指针指向下一个节点
+        }
+
+        return NodeHead;
+    }
 
 }
