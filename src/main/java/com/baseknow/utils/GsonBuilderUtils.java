@@ -41,8 +41,11 @@ public class GsonBuilderUtils {
     }
 
     /**
-     * 将json 字符串转换为jsonobject 对象
+     * 将json 字符串转换为jsonobject 对象操作
      * @param jsonStr
+     * 我们一般这么使用
+     *  JsonObject parse=GsonBuilderUtils.parse(str); //字符创转换为可操作的json 对象
+     * 	System.out.println(parse.get("top_bottom").getAsString());//get进行对象的操作
      *
      */
     public static JsonObject parse(String jsonStr){
