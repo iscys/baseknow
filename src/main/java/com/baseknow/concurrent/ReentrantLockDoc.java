@@ -45,14 +45,14 @@ public class ReentrantLockDoc {
             public void run() {
                 lock.lock();
                 try{
-                    while(count==0){
-                        isEmpty.await();
-
+                    while(true){
+                        while(count==0){
+                            isEmpty.await();
+                        }
+                        --count;
+                        System.out.println(Thread.currentThread().getName()+"-->"+count);
+                        isFull.signal();
                     }
-                    --count;
-                    System.out.println(count);
-                    isFull.signal();
-
                 }
                 catch(Exception e){}
                 finally {
@@ -67,12 +67,37 @@ public class ReentrantLockDoc {
             public void run() {
                 lock.lock();
                 try{
-                    while(count==1){
-                        isFull.await();
+                    while(true){
+                        while(count==0){
+                            isEmpty.await();
+                        }
+                        --count;
+                        System.out.println(Thread.currentThread().getName()+"-->"+count);
+                        isFull.signal();
                     }
-                    ++count;
-                    System.out.println(count);
-                    isEmpty.signal();
+                }
+                catch(Exception e){}
+                finally {
+                    lock.unlock();
+                }
+
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                lock.lock();
+                try{
+                    while(true){
+
+                        while(count==1){
+                            isFull.await();
+                        }
+                        ++count;
+                        System.out.println(Thread.currentThread().getName()+"-->"+count);
+                        isEmpty.signal();
+                    }
                 }
                 catch(Exception e){}
                 finally {
