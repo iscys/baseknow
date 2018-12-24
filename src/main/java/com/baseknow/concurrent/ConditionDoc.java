@@ -27,14 +27,18 @@ public class ConditionDoc {
         }).start();
 
 
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 lock.lock();
                 try{
-                    Thread.sleep(1200);
-                    System.out.println("3 obtain lock");
-                    System.out.println(" 3 thread access");
+
+                    System.out.println("2 obtain lock");
+                    Thread.sleep(1000);
+                    condition.await();
+                    System.out.println(" 2 thread access");
 
                 }catch (Exception e){}finally {
                     lock.unlock();
@@ -47,11 +51,10 @@ public class ConditionDoc {
             public void run() {
                 lock.lock();
                 try{
-
-                    System.out.println("2 obtain lock");
-                    Thread.sleep(1000);
+                    Thread.sleep(1200);
+                    System.out.println("3 obtain lock");
+                    System.out.println(" 3 thread access");
                     condition.signal();
-                    System.out.println(" 2 thread access");
 
                 }catch (Exception e){}finally {
                     lock.unlock();
