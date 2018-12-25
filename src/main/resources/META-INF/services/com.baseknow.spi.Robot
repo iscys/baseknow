@@ -1,1 +1,0 @@
-com.baseknow.spi.OptimusPrime
