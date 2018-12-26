@@ -1,6 +1,7 @@
 package com.baseknow.spring;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -17,6 +18,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringCustome implements InitializingBean,
 BeanDefinitionRegistryPostProcessor,ApplicationContextAware {
 
+
+	private ApplicationContext context;
 	public static void main(String[] args) {
 		
 		ApplicationContext app = new ClassPathXmlApplicationContext("classpath:springTest/my.xml");
@@ -32,6 +35,7 @@ BeanDefinitionRegistryPostProcessor,ApplicationContextAware {
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 			System.out.println("ApplicationContextAware执行");
+			this.context=applicationContext;
 		
 	}
 
@@ -43,9 +47,10 @@ BeanDefinitionRegistryPostProcessor,ApplicationContextAware {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		
-		System.out.println("InitializingBean执行");
-		
+		//可以获取spring注册的bean
+		SpringCustome springCustome = BeanFactoryUtils.beanOfType(context, SpringCustome.class);
+		System.out.println(springCustome);
+
 	}
 
 	
