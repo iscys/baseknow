@@ -7,7 +7,7 @@
             http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<!-- 提供方应用信息，用于计算依赖关系 -->
-	<dubbo:application name="hm-service-cart" />
+	<dubbo:application name="hm-service-cart"  />
 
 	<!-- 使用zookeeper注册中心暴露服务地址 -->
 	<!-- 开发 -->
@@ -19,6 +19,9 @@
 	
 	<!-- monitor监控 自动注册-->
 	<dubbo:monitor protocol="registry"/>
+	<!--
+	<dubbo:provider proxy="jdk"></dubbo:provider>
+	-->
 	<!-- 直连 -->
 	<!--<dubbo:monitor address="10.0.96.19:7070" />-->
 	 
@@ -29,7 +32,8 @@
 
 	<dubbo:service interface="com.baseknow.dubbo.IdubboService" ref="dubboService"
 		timeout="50000"
-		executes="1000"/>
+		executes="1000"
+		/>
 	<!--
 	<dubbo:reference
         id="rPCLayoutProvider"
