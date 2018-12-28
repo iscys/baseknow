@@ -109,7 +109,7 @@ public class ZookRegistry {
     public static void main(String[] args) {
         ZookRegistry zkClient =new ZookRegistry("47.95.245.138:2181",5000);
         System.out.println(zkClient.getClient());
-        zkClient.deleteRecursive("/cys");
+        zkClient.deleteRecursive("/dubbo");
         zkClient.doClose();
        // zkClient.create("/cys/zka");
 
