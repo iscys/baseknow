@@ -34,6 +34,11 @@
 		timeout="50000"
 		executes="1000"
 		/>
+	<bean id="spi" class="com.baseknow.spi.OptimusPrime"></bean>
+	<dubbo:service interface="com.baseknow.spi.Robot" ref="spi"
+				   timeout="50000"
+				   executes="1000"
+	/>
 	<!--
 	<dubbo:reference
         id="rPCLayoutProvider"
