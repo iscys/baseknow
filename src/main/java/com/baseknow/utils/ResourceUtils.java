@@ -6,8 +6,10 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.Properties;
 
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.StringUtils;
 
 /**
@@ -81,11 +83,28 @@ public class ResourceUtils {
 		finally {
 			is.close();
 		}
-		
+
 		return prop;
 		
 	}
-	
+
+	/**
+	 * 加载所有的 指定名称的 Properties 文件（是项目下所有符合的名称）
+	 * @return
+	 */
+	public Properties PropertiesLoaderUtils(String resouceName) throws IOException{
+		notNull(resouceName, "文件名不能为空");
+		ClassLoader loadr = getClassLoader();
+		Properties props = new Properties();
+		Enumeration<URL> urls = loadr.getResources(resouceName);
+		while(urls.hasMoreElements()){
+			URL url = urls.nextElement();
+			InputStream is = url.openStream();//url.openConnection() +getInputStream()组合体
+			props.load(is);
+		}
+		return props;
+
+	}
 	
 	
 	
