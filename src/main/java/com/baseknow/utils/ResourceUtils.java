@@ -8,9 +8,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Properties;
-
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.StringUtils;
+
 
 /**
  * spring 提供的文件工具类->FileSystemContextResource
@@ -74,6 +73,11 @@ public class ResourceUtils {
 		
 		notNull(resouceName, "文件名不能为空");
 		InputStream  is = null;
+		//容错，去除第一位的"/";
+		String hasSeparate = resouceName.substring(0, 1);
+		if(hasSeparate.equals("/") ||hasSeparate.equals("\\")){
+			resouceName=resouceName.substring(1);
+		}
 		Properties prop =new Properties();
 		ClassLoader loader = getClassLoader();
 		try {
@@ -92,23 +96,28 @@ public class ResourceUtils {
 	 * 加载所有的 指定名称的 Properties 文件（是项目下所有符合的名称）
 	 * @return
 	 */
-	public Properties PropertiesLoaderUtils(String resouceName) throws IOException{
+	public static  Properties loadAllProperties(String resouceName) throws IOException{
 		notNull(resouceName, "文件名不能为空");
+		//容错，去除第一位的"/";
+		String hasSeparate = resouceName.substring(0, 1);
+		if(hasSeparate.equals("/") ||hasSeparate.equals("\\")){
+			resouceName=resouceName.substring(1);
+		}
 		ClassLoader loadr = getClassLoader();
 		Properties props = new Properties();
 		Enumeration<URL> urls = loadr.getResources(resouceName);
 		while(urls.hasMoreElements()){
 			URL url = urls.nextElement();
 			InputStream is = url.openStream();//url.openConnection() +getInputStream()组合体
-			props.load(is);
+			try {
+				props.load(is);
+			}finally {
+				is.close();
+			}
 		}
 		return props;
 
 	}
-	
-	
-	
-	
 	
 	/**
 	 * 获取类加载器
@@ -136,6 +145,10 @@ public class ResourceUtils {
 			throw new IllegalArgumentException(message);
 		}
 	}
-	
+
+
+	public static void main(String[] args)throws Exception {
+
+	}
 
 }
