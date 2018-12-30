@@ -42,10 +42,7 @@ public class NettyClient {
             ChannelFuture future = clientBootstrap.connect(host, port);
             channel = future.sync().channel();
 
-        }catch(Exception e){}finally {
-
-        }
-        
+        }catch(Exception e){}
 
     }
 
@@ -61,5 +58,9 @@ public class NettyClient {
         else{
             return channel;
         }
+    }
+
+    public void destory(){
+        event.shutdownGracefully();
     }
 }
