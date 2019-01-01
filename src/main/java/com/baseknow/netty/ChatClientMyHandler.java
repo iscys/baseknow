@@ -8,14 +8,15 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @author cys
  *
  */
-public class ChatClientMyHandler extends SimpleChannelInboundHandler<String> {
+public class ChatClientMyHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-
-
-        System.out.println("消息接收");
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+        System.out.println(ctx.channel());
         System.out.println(msg);
+        System.out.println("消息接收");
+        ctx.channel().close();
+
 
     }
 

@@ -39,8 +39,8 @@ public class NettyClient {
      */
     protected void connection() {
         try {
-            ChannelFuture future = clientBootstrap.connect(host, port);
-            channel = future.sync().channel();
+            ChannelFuture connect = clientBootstrap.connect(host, port);
+            channel = connect.sync().channel();
 
         }catch(Exception e){}
 
