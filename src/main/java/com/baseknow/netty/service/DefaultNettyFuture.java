@@ -2,7 +2,6 @@ package com.baseknow.netty.service;
 
 import io.netty.channel.Channel;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -18,11 +17,13 @@ public class DefaultNettyFuture {
     private ReentrantLock lock =new ReentrantLock();
     private Condition done =lock.newCondition();
     private volatile Long id;
+    private volatile Channel channel;
 
     /**
      * 设置默认future
      */
     public DefaultNettyFuture(Channel channel, int timeout){
+        this.channel=channel;
         this.timeout = timeout<0?0:timeout;
         this.id = ATOLONG.incrementAndGet();
         FUTURES.put(id,this);
