@@ -8,6 +8,10 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 同步获取返回的结果
+ * @author iscys
+ */
 public class DefaultNettyFuture {
 
     public static  ConcurrentHashMap<Long,DefaultNettyFuture> FUTURES = new ConcurrentHashMap<>();
