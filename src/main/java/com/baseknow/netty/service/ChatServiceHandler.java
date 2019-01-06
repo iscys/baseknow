@@ -27,6 +27,7 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<Object> {
 
         Channel channel =ctx.channel();
         Invocations invoke = (Invocations) msg;
+
         System.out.println(invoke.method);
 //		for(Channel ch:channelGroup) {
 //			if(ch==channel) {
@@ -42,7 +43,8 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<Object> {
             ResultResponse result =new ResultResponse();
             result.setResult(result);
             result.setId(invoke.getId());
-                ctx.channel().writeAndFlush(result);
+            System.out.println(Thread.currentThread().getName()+":"+invoke.getId());
+            ctx.channel().writeAndFlush(result);
         });
 
 

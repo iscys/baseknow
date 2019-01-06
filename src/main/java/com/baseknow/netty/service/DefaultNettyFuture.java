@@ -1,5 +1,7 @@
 package com.baseknow.netty.service;
 
+import io.netty.channel.Channel;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +22,7 @@ public class DefaultNettyFuture {
     /**
      * 设置默认future
      */
-    public DefaultNettyFuture(int timeout){
+    public DefaultNettyFuture(Channel channel, int timeout){
         this.timeout = timeout<0?0:timeout;
         this.id = ATOLONG.incrementAndGet();
         FUTURES.put(id,this);

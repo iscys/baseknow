@@ -80,11 +80,10 @@ public class NettyClient {
     }
 
     public DefaultNettyFuture write(Invocations o){
-
-        DefaultNettyFuture future= new DefaultNettyFuture(300000);
+        DefaultNettyFuture future= new DefaultNettyFuture(getChannel(),3000);
         o.setId(future.getId());
         channel.writeAndFlush(o);
-        
+
         return future;
     }
 
