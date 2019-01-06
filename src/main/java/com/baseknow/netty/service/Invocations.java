@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class Invocations implements Serializable {
 
     public String method;
-    public String name;
+    public Object[] arguments;
     public long id;
 
-    public Invocations(String method, String name) {
+    public Invocations(String method, Object[] arguments) {
         this.method = method;
-        this.name = name;
+        this.arguments=arguments;
     }
 
     public void setId(long id){

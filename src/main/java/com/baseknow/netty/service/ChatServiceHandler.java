@@ -41,7 +41,7 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<Object> {
         //	}
         excutor.submit(()->{
             ResultResponse result =new ResultResponse();
-            result.setResult(result);
+            result.setResult("1");
             result.setId(invoke.getId());
             System.out.println(Thread.currentThread().getName()+":"+invoke.getId());
             ctx.channel().writeAndFlush(result);
