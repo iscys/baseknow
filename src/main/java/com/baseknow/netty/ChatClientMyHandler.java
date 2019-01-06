@@ -1,7 +1,12 @@
 package com.baseknow.netty;
 
+import com.baseknow.netty.service.DefaultNettyFuture;
+import com.baseknow.netty.service.Invocations;
+import com.baseknow.netty.service.ResultResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 构建自己的Handler
@@ -12,10 +17,13 @@ public class ChatClientMyHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+        ResultResponse ins = (ResultResponse) msg;
         System.out.println(ctx.channel());
-        System.out.println(msg);
         System.out.println("消息接收");
-        ctx.channel().close();
+        DefaultNettyFuture.setResponse(ins);
+
+
+
 
 
     }
