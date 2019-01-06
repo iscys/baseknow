@@ -44,8 +44,8 @@ public class NettyClient {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pip=ch.pipeline();
-                        pip.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
-                        pip.addLast(new ObjectEncoder());
+                        pip.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));//解码，定长域，避免tcp 拆包粘包
+                        pip.addLast(new ObjectEncoder());//outbound 处理器进行编码
                         pip.addLast(new ChatClientMyHandler());
 
                     }
