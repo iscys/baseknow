@@ -8,26 +8,27 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * 自己业务的处理
  * @author Administrator
  *
  */
-public class ChatServiceHandler extends SimpleChannelInboundHandler<String> {
-
-
-
-
-
+public class ChatServiceHandler extends SimpleChannelInboundHandler<Object> {
+    private  ExecutorService excutor = Executors.newFixedThreadPool(10);
     //netty 提供的 可以获得当前channel 组,用来保存一个一个的channel 对象，这个很重要
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 
         Channel channel =ctx.channel();
-        System.out.println(msg);
+        Invocations invoke = (Invocations) msg;
+
+        System.out.println(invoke.method);
 //		for(Channel ch:channelGroup) {
 //			if(ch==channel) {
 //				//如果是自己发的消息的话
@@ -38,7 +39,14 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<String> {
 //				ch.writeAndFlush(channel.remoteAddress()+"msg="+msg);
 //			}
         //	}
-        ctx.channel().writeAndFlush(msg+"\n");
+        excutor.submit(()->{
+            ResultResponse result =new ResultResponse();
+            result.setResult("1");
+            result.setId(invoke.getId());
+            System.out.println(Thread.currentThread().getName()+":"+invoke.getId());
+            ctx.channel().writeAndFlush(result);
+        });
+
 
     }
 
@@ -54,6 +62,8 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<String> {
         channelGroup.writeAndFlush("【服务器】-"+channel.remoteAddress()+"进入了聊天室");
         channelGroup.add(channel);
 
+        //ctx.channel().write()
+
 
     }
 
@@ -68,6 +78,7 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<String> {
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         System.out.println(ctx.channel()+"---remove");
     }
+
 
 
 }

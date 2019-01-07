@@ -9,29 +9,32 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.nio.channels.Selector;
 
-public class ChatService {
+public class NettyService {
+
+    private volatile EventLoopGroup boosGroup;
+    private volatile  EventLoopGroup workGroup;
+    private volatile ServerBootstrap boostrap;
+    private volatile int port;
 
 
-    public static void main(String[] args) throws Exception {
-
-
+    NettyService(int bindPort){
         //万年不变的流程
-        EventLoopGroup boosGroup =new NioEventLoopGroup();
-        EventLoopGroup workGroup =new NioEventLoopGroup();
-        ServerBootstrap boostrap =new ServerBootstrap();
-        Selector selector = Selector.open();
-        //selector.selectedKeys()
-        //boosGroup.next();
+        boosGroup =new NioEventLoopGroup();
+        workGroup =new NioEventLoopGroup();
+        boostrap =new ServerBootstrap();
+        this.port=bindPort;
+
+    }
+
+    public void doOpen() throws Exception{
+
         try{
 
             boostrap.group(boosGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
-
                     .childHandler(new ChatServiceInitializer());
 
-
-            ChannelFuture channelFuture=boostrap.bind(9077).sync();
-
+            ChannelFuture channelFuture=boostrap.bind(port).sync();
             channelFuture.channel().closeFuture().sync();
         }
         finally {
@@ -39,6 +42,13 @@ public class ChatService {
             workGroup.shutdownGracefully();
             boosGroup.shutdownGracefully();
         }
+
+
+    }
+
+    public static void main(String[] args) throws Exception {
+
+
 
 
     }
