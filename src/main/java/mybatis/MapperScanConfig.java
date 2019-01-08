@@ -74,6 +74,9 @@ public class MapperScanConfig implements BeanDefinitionRegistryPostProcessor, In
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:springTest/mybatis.xml");
 
+        TestMain testMain = (TestMain)context.getBean("testMain");
+        testMain.test();
+
 
     }
 
