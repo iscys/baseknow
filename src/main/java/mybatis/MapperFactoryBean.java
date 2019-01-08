@@ -19,7 +19,7 @@ public class MapperFactoryBean implements FactoryBean {
 
     @Override
     public boolean isSingleton() {
-        return false;
+        return true;
     }
 
     public Class getMapperInterface() {
