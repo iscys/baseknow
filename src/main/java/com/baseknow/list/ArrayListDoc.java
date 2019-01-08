@@ -2,16 +2,21 @@
 package com.baseknow.list;
 
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ArrayListDoc {
 
 	
 	public static void main(String[] args) {
-		
-		List<String> li =new ArrayList<String>();
-		li.forEach((v)->{
-			System.out.println(v);
-		});
+		List a =new LinkedList();
+		List b =a;
+		System.out.println(a==b);
+		b=null;
+		System.out.println(b);
+		System.out.println(a);
+
+
+
 	}
 
 	/**
