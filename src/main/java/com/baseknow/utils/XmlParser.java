@@ -1,5 +1,6 @@
 package com.baseknow.utils;
 
+import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -30,6 +31,8 @@ public class XmlParser {
     public Document createDocument(InputStream inputStream) throws Exception{
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();//创建解析工厂
+        factory.setNamespaceAware(false);//是否支持XML 命名空间
+        factory.setIgnoringComments(true);//忽略掉注释
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document parse = builder.parse(inputStream);
         return parse;
@@ -82,10 +85,15 @@ public class XmlParser {
 
     public static void main(String[] args) throws Exception{
         XmlParser parser =new XmlParser(new FileInputStream(ResourceUtils.getFile("springTest/ImageDisplayMapper.xml")));
-        NodeX nodeX = parser.evalNode("/mapper");
-        List<NodeX> nodes = nodeX.evalNodes("select|delete|update");
-       // List<NodeX> nodes = parser.evalNodes("//select");
-        System.out.println(nodes);
+        NodeX nodeX = parser.evalNode("//select");
+        NodeList childNodes = nodeX.getNode().getChildNodes();
+        for(int i=0;i<childNodes.getLength();i++){
+            NodeX child = nodeX.newXNode(childNodes.item(i));
+            if (child.getNode().getNodeType() == Node.CDATA_SECTION_NODE
+                    || child.getNode().getNodeType() == Node.TEXT_NODE) {
+                System.out.println(child.getStringBody(""));
+            }
+        }
 
     }
 }
