@@ -4,6 +4,7 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
@@ -36,6 +37,8 @@ public class ClassPathScanner extends ClassPathBeanDefinitionScanner {
             propertyValues.add("mapperInterface",gen.getBeanClassName());
             //根据接口设置代理类，这个类需要实现FactoryBean 的接口，这样可以动态生成代理对象
             gen.setBeanClass(MapperFactoryBean.class);
+            //实例化会进行自动属性的注入
+            gen.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
 
         }

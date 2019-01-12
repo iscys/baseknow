@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.Properties;
 import org.springframework.util.StringUtils;
 
@@ -17,12 +18,16 @@ import org.springframework.util.StringUtils;
  *
  */
 public class ResourceUtils {
+
+	public static final String MATCH_ALL ="";
+	public static final String MATCH_XML ="xml";
+	public static final String MATCH_CLASS ="class";
 	
 	
 	/**
 	 * 加载项目中的文件转换为文件File对象
 	 * 如果文件在classpath 目录下，resourceName = classes下的相对路径 eg->spring/applicationContext.xml
-	 * 如果查找的文件在磁盘中，resourceName=磁盘绝对路径：rg->D:\\tomcat7.0.59\\apache-tomcat-7.0.59\\
+	 * 如果查找的文件在磁盘中，resourceName=磁盘绝对路径：eg->D:\\tomcat7.0.59\\apache-tomcat-7.0.59\\
 	 * 首先先会到项目路径下找
 	 * 然后才会到系统文件中去找
 	 * ..可以返回上一级目录
@@ -118,6 +123,30 @@ public class ResourceUtils {
 		return props;
 
 	}
+
+	/**
+	 * 获取指定文件目录下的所有匹配的文件
+	 */
+
+	public static LinkedList<File> sanPackage(String directRoot,String matchWord) throws Exception{
+		LinkedList<File> matchFile =new LinkedList<>();
+		File file = getFile(directRoot);
+		File[] files = file.listFiles();
+		for(File f :files){
+			System.out.println(f.getName());
+			if(!StringUtils.isEmpty(matchWord)){
+				if(f.getName().matches(".*"+matchWord+".*")){
+					matchFile.add(f);
+				}
+			}else{
+				matchFile.add(f);
+			}
+
+		}
+		return matchFile;
+
+	}
+
 	
 	/**
 	 * 获取类加载器
@@ -148,6 +177,8 @@ public class ResourceUtils {
 
 
 	public static void main(String[] args)throws Exception {
+		LinkedList<File> file = sanPackage("mybatis",MATCH_ALL);
+		System.out.println(file.size());
 
 	}
 
