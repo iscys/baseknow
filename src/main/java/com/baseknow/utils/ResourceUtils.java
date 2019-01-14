@@ -133,7 +133,6 @@ public class ResourceUtils {
 		File file = getFile(directRoot);
 		File[] files = file.listFiles();
 		for(File f :files){
-			System.out.println(f.getName());
 			if(!StringUtils.isEmpty(matchWord)){
 				if(f.getName().matches(".*"+matchWord+".*")){
 					matchFile.add(f);
