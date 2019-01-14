@@ -1,8 +1,6 @@
 package mybatis;
 
 import com.baseknow.dubbo.IdubboService;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

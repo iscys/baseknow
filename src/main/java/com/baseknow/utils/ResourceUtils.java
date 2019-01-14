@@ -124,11 +124,20 @@ public class ResourceUtils {
 
 	}
 
+
+	/**
+	 * 会扫描所有的文件
+	 * @param directRoot
+	 * @return
+	 * @throws Exception
+	 */
+	public static LinkedList<File> scanPackage(String directRoot) throws Exception{
+		return scanPackage(directRoot,null);
+	}
 	/**
 	 * 获取指定文件目录下的所有匹配的文件
 	 */
-
-	public static LinkedList<File> sanPackage(String directRoot,String matchWord) throws Exception{
+	public static LinkedList<File> scanPackage(String directRoot,String matchWord) throws Exception{
 		LinkedList<File> matchFile =new LinkedList<>();
 		File file = getFile(directRoot);
 		File[] files = file.listFiles();
@@ -176,7 +185,7 @@ public class ResourceUtils {
 
 
 	public static void main(String[] args)throws Exception {
-		LinkedList<File> file = sanPackage("mybatis",MATCH_ALL);
+		LinkedList<File> file = scanPackage("springTest");
 		System.out.println(file.size());
 
 	}
