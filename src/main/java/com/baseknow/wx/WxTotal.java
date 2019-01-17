@@ -98,7 +98,7 @@ public class WxTotal {
         return url;
     }
     /**
-     * 通过code 获取拥护的信息
+     * 通过code 获取用户的信息
      * WxMpOAuth2AccessToken// 维护了openId ,联合登录的unionId ,accessToken 信息
      * @throws Exception
      */
