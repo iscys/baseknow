@@ -66,6 +66,7 @@ public class WxTotal {
      * 物流信息：{{keyword2.DATA}}
      * 目前联系电话：{{keyword3.DATA}}
      * 购买公司：{{keyword4.DATA}}
+     * 颜色使用十六进制的颜色值，英文颜色会导致iOS 手机看不到消息
      */
 
     public static  void sendTemplate() throws Exception{
@@ -74,11 +75,11 @@ public class WxTotal {
                 .templateId("P9GkNJd7ziaX3CQV1muBRKz2vEZzne_ByGZolsZeL48")
                 .url("https://www.baidu.com")
                 .build();
-        templateMessage.addData(new WxMpTemplateData("first", "\t mmp", "red"));
-        templateMessage.addData(new WxMpTemplateData("keyword1", "\t wo1", "red"));
-        templateMessage.addData(new WxMpTemplateData("keyword2", "\t wo2", "red"));
-        templateMessage.addData(new WxMpTemplateData("keyword3", "\t wo3", "red"));
-        templateMessage.addData(new WxMpTemplateData("keyword4", "\t wo3", "red"));
+        templateMessage.addData(new WxMpTemplateData("first", "\t mmp", "#fff"));
+        templateMessage.addData(new WxMpTemplateData("keyword1", "\t wo1", "#fff"));
+        templateMessage.addData(new WxMpTemplateData("keyword2", "\t wo2", "#fff"));
+        templateMessage.addData(new WxMpTemplateData("keyword3", "\t wo3", "#fff"));
+        templateMessage.addData(new WxMpTemplateData("keyword4", "\t wo3", "#fff"));
 
         String templateId=wxMpService.getTemplateMsgService().sendTemplateMsg(templateMessage);
         System.out.println(templateId);
