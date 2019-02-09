@@ -18,7 +18,7 @@ public class JavaRunMachine {
 
 
     public static JavaRunMachine nn =new JavaRunMachine();
-    public  static int a =4 ;
+    public  static int a ;
 
     public static  int b=9;
 
