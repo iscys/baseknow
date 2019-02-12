@@ -61,24 +61,12 @@ public class Leetcode242 {
                 receive.put(c,1);
             }
         }
+      return   current.equals(receive);
 
 
-        for(Map.Entry<Character, Integer> entry:current.entrySet()){
-            Character key = entry.getKey();
-            Integer value = entry.getValue();
-            Integer integer = receive.get(key);
-            if(integer==null){
-                return false;
-            }
-            if(integer<value){
-                return false;
-            }
 
 
-        }
 
-
-        return false;
 
 
     }
