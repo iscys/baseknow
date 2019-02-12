@@ -48,21 +48,16 @@ public class TwoSUM {
      */
     public int[] twoSums(int[] nums, int target) {
 
-    int [] array  =new int[2];
-    HashMap map =new HashMap();
-
-    for(int i=0;i<nums.length;i++){
-
-       int res= target  -nums[i];
-       if(map.containsKey(res)){
-           int o = (int)map.get(res);
-           array[0]= i;
-           array[1]=o;
-           break;
-       }
-        map.put(nums[i],i);
-    }
-    return array;
+        HashMap<Integer,Integer> map =new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int res =target-nums[i];
+            if(map.containsKey(res)){
+                return new int[]{i,map.get(res)};
+            }else{
+                map.put(nums[i],i);
+            }
+        }
+            return null;
     }
 
 }
