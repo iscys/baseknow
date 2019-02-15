@@ -43,7 +43,7 @@ public class Leetcode102 {
         if(root !=null) {
             queue.offer(root);
 
-            //BFS 模板
+            //BFS 模板：广度优先
         while(!queue.isEmpty()) {
             int size = queue.size();//当前层的长度
             List<Integer> a = new ArrayList<>();
