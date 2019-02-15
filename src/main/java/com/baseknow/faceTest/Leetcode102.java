@@ -32,8 +32,9 @@ public class Leetcode102 {
 
         List<List<Integer>> array =new ArrayList<>();
 
-        queue.offer(root);
+
         if(root !=null) {
+            queue.offer(root);
         while(!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> a = new ArrayList<>();
