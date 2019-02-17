@@ -20,5 +20,12 @@ public class StringDoc {
 		System.out.println(hello== new String("hello").intern());
 		System.out.println(new String("hello")== new String("hello"));
 		System.out.println(new String("hello").intern()== new String("hello").intern());
+
+		/**
+		 * 拆装箱
+		 */
+		Integer a=new Integer(1231);
+		int b=1231;
+		System.out.println(a==b);
 	}
 }
