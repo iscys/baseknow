@@ -45,7 +45,6 @@ public class BinarySearch {
 
 
     public static int binarySearch2(int[] array,int target){
-
         Arrays.sort(array);
 
         int left =0;
@@ -54,11 +53,10 @@ public class BinarySearch {
         while(left<=right){
             mid =(left+right)>>1;
             if(array[mid]==target) return mid;
-            if(array[mid]>target) {right =mid-1;}else{
-                left=mid+1;
-            }
-
-
+            else if(array[mid]>target)
+                right =mid-1;
+            else
+                left =mid+1;
         }
         return mid;
 
