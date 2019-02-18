@@ -23,17 +23,15 @@ public class ReverseLinkedList {
 
     public ListNode reverseList(ListNode head) {
         //两个指，一个指向当前节点，一个用与进行反转
-        ListNode pre = null;
-        ListNode current =head;
-        while(current!=null){
-            //记录下一个节点的位置
-            ListNode next =current.next;
-            current.next=pre;
-            pre=current;
-            current =next;
-        }
-        return pre;
-
+      ListNode pre =null;
+      ListNode current =head;
+      while(current !=null){
+          ListNode next =current.next;
+          current.next =pre;
+          pre =current;
+          current =next;
+      }
+      return pre;
     }
 
 
