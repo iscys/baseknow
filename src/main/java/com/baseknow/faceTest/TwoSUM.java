@@ -41,7 +41,7 @@ public class TwoSUM {
     /**
      * hash 求解
      * o(n)复杂度
-     *
+     *给定 nums = [2, 7, 11, 15], target = 9
      * @param nums
      * @param target
      * @return
@@ -49,15 +49,17 @@ public class TwoSUM {
     public int[] twoSums(int[] nums, int target) {
 
         HashMap<Integer,Integer> map =new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            int res =target-nums[i];
+        for(int j=0;j<nums.length;j++){
+            int res =target-nums[j];
             if(map.containsKey(res)){
-                return new int[]{i,map.get(res)};
-            }else{
-                map.put(nums[i],i);
+                return new int[]{j,map.get(res)};
+            }else {
+                map.put(nums[j],j);
             }
+
         }
-            return null;
+        return null;
+
     }
 
 }
