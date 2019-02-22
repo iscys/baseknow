@@ -23,6 +23,7 @@ public class JavaRunMachine {
     public static  int b=9;
 
     static {
+        b=6;
         System.out.println("静态代码块");
         a++;
         b++;
