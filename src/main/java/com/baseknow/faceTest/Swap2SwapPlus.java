@@ -33,27 +33,29 @@ public class Swap2SwapPlus {
     }
 
         public ListNode rotateRight(ListNode head, int k) {
-            if (head == null) return null;
-            ListNode current = head;
-            ListNode tail = null;
-            int size = 0;
-            //变循环链表
-            while (current != null) {
-                size++;
-                if (current.next == null) {
-                    tail = current;
-                }
-                current = current.next;
-            }
-            tail.next = head;//头尾相连
+         if(head==null) return null;
 
-            int re = k % size;
-            for (int i = 0; i < size - re; i++) {
-                tail = tail.next;
+        ListNode cur =head;
+        ListNode tail =null;
+        int size=0;
+        //首尾相连
+        while(cur !=null){
+            size++;
+            if(cur.next==null){
+                tail =cur;
             }
-            current = tail.next;
-            tail.next = null;
-            return current;
+            cur=cur.next;
+        }
+        tail.next=head;//首尾相连
+            int  j =k%size;
+            for(int i =0;i<size-j;i++){
+                tail =tail.next;
+            }
+            cur =tail.next;
+            tail.next=null;
+            return cur;
+
+
         }
 
 }
