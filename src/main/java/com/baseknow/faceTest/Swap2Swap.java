@@ -19,7 +19,12 @@ public class Swap2Swap {
         ListNode pre =new ListNode(0);
         ListNode now =pre;
         ListNode current =head;
-        while(current.next!=null){
+        while(current!=null){
+            if(current.next==null){
+                pre.next =current;
+                pre =current;
+                break;
+            }
             ListNode next2 = current.next.next;//保存下下一个节点的指针,下次循环进行交换
             ListNode next = current.next;
             current.next =null;
