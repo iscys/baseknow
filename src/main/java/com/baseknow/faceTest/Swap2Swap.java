@@ -20,20 +20,26 @@ public class Swap2Swap {
         ListNode now =pre;
         ListNode current =head;
         while(current!=null){
-            if(current.next==null){
-                pre.next =current;
-                pre =current;
+            ListNode next =current.next;
+            if(next ==null) {
+                pre.next=current;
+                pre=current;
                 break;
             }
-            ListNode next2 = current.next.next;//保存下下一个节点的指针,下次循环进行交换
-            ListNode next = current.next;
-            current.next =null;
-            next.next=current;
-            pre.next =next;
+            ListNode plusNext =current.next.next;
+            current.next=null;
+            next.next =current;
+            pre.next=next;
             pre =current;
-            current =next2;
+            current =plusNext;
         }
-    return now.next;
+
+
+
+
+        return now.next;
+
+
     }
 
     public class ListNode {
