@@ -31,31 +31,31 @@ public class Swap2SwapPlus {
             val = x;
         }
     }
-
-        public ListNode rotateRight(ListNode head, int k) {
-         if(head==null) return null;
-
-        ListNode cur =head;
+    public ListNode rotateRight(ListNode head, int k) {
+        //记录一个有多少节点，并且将链表变成为一个环形链表，首尾相连
+        if(head==null) return null;
+        ListNode pre =head;
         ListNode tail =null;
         int size=0;
-        //首尾相连
-        while(cur !=null){
+        while(pre !=null){
             size++;
-            if(cur.next==null){
-                tail =cur;
+            if(pre.next==null){
+                tail =pre;
             }
-            cur=cur.next;
+            pre =pre.next;
         }
         tail.next=head;//首尾相连
-            int  j =k%size;
-            for(int i =0;i<size-j;i++){
-                tail =tail.next;
-            }
-            cur =tail.next;
-            tail.next=null;
-            return cur;
-
+        int res =k%size;
+        for(int i=0;i<size-res;i++){
+            tail =tail.next;
 
         }
+        pre =tail.next;
+        tail.next=null;
+
+        return pre;
+
+    }
+
 
 }
