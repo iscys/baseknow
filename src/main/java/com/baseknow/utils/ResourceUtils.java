@@ -185,7 +185,7 @@ public class ResourceUtils {
 
 
 	public static void main(String[] args)throws Exception {
-		LinkedList<File> file = scanPackage("springTest");
+		LinkedList<File> file = scanPackage("com/baseknow/utils","class");
 		System.out.println(file.size());
 
 	}
