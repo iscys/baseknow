@@ -132,26 +132,31 @@ public class ResourceUtils {
 	 * @throws Exception
 	 */
 	public static LinkedList<File> scanPackage(String directRoot) throws Exception{
-		return scanPackage(directRoot,null);
+		LinkedList<File> result =new LinkedList<File>();
+		File dir = getFile(directRoot);
+		return doRetrieveMatchingFiles(dir,result,null);
 	}
 	/**
 	 * 获取指定文件目录下的所有匹配的文件
 	 */
-	public static LinkedList<File> scanPackage(String directRoot,String matchWord) throws Exception{
-		LinkedList<File> matchFile =new LinkedList<>();
-		File file = getFile(directRoot);
-		File[] files = file.listFiles();
-		for(File f :files){
-			if(!StringUtils.isEmpty(matchWord)){
-				if(f.getName().matches(".*"+matchWord+".*")){
-					matchFile.add(f);
-				}
-			}else{
-				matchFile.add(f);
-			}
+	public static LinkedList<File> doRetrieveMatchingFiles(File dir,LinkedList<File> result,String matchWord) throws Exception{
 
+		File[] files = dir.listFiles();
+		for(File f :files){
+			if(f.isDirectory()){//判断是否是文件还是目录
+				doRetrieveMatchingFiles(f,result,matchWord);
+			} else {
+				if (!StringUtils.isEmpty(matchWord)) {
+					if (f.getName().matches(".*" + matchWord + ".*")) {
+						result.add(f);
+					}
+				} else {
+					System.out.println(f.getAbsolutePath());
+					result.add(f);
+				}
+			}
 		}
-		return matchFile;
+		return result;
 
 	}
 
@@ -185,7 +190,7 @@ public class ResourceUtils {
 
 
 	public static void main(String[] args)throws Exception {
-		LinkedList<File> file = scanPackage("com/baseknow/utils","class");
+		LinkedList<File> file = scanPackage("com/baseknow");
 		System.out.println(file.size());
 
 	}
