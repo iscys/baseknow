@@ -19,9 +19,7 @@ import org.springframework.util.StringUtils;
  */
 public class ResourceUtils {
 
-	public static final String MATCH_ALL ="";
-	public static final String MATCH_XML ="xml";
-	public static final String MATCH_CLASS ="class";
+	static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
 	
 	
 	/**
@@ -160,6 +158,15 @@ public class ResourceUtils {
 
 	}
 
+
+	/**
+	 * 将"." 替换成"/"
+	 * @param basePackage
+	 * @return
+	 */
+	public static String resolveBasePackage(String basePackage){
+		return basePackage.replace('.', '/');
+	}
 	
 	/**
 	 * 获取类加载器
@@ -190,8 +197,8 @@ public class ResourceUtils {
 
 
 	public static void main(String[] args)throws Exception {
-		LinkedList<File> file = scanPackage("com/baseknow");
-		System.out.println(file.size());
+		System.out.println(resolveBasePackage("com.baseknow.array"));
+
 
 	}
 
