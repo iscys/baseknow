@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.util.HashMap;
+
 /**
  * gson json转换器
  * author cys
@@ -51,6 +53,20 @@ public class GsonBuilderUtils {
     public static JsonObject parse(String jsonStr){
 
        return new JsonParser().parse(jsonStr).getAsJsonObject();
+    }
+
+    /**
+     * demo 测试用例
+     * @param args
+     */
+    public static void main(String[] args) {
+        HashMap<String,String> map =new HashMap<>();
+        map.put("1","d");
+        map.put("2","f");
+        String s = GsonBuilderUtils.toJson(map);
+        System.out.println(s);
+        JsonObject parse = GsonBuilderUtils.parse(s);
+        System.out.println(parse.get("1"));
     }
 
 }
