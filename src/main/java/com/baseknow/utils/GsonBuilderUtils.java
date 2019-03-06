@@ -13,13 +13,13 @@ import java.util.HashMap;
  */
 public class GsonBuilderUtils {
 
-    public static final GsonBuilder INSTANCE = new GsonBuilder();
+    private static final GsonBuilder INSTANCE = new GsonBuilder();
 
     /**
      * 得到GSON 对象
      * @return
      */
-    public static Gson creat(){
+    private static Gson creat(){
         return INSTANCE.create();
     }
 
