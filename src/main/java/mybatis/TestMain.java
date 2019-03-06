@@ -12,11 +12,18 @@ public class TestMain {
 
 
     public void test(){
-       // MapperFactoryBean
+       //MapperFactoryBean
         //SqlSessionFactoryBean
         System.out.println(service.sayBye("1","1"));
         System.out.println(service.getClass().getName());
     }
 
+    public static void main(String[] args) {
+
+        Integer a=123;
+        Integer b= new Integer(123);
+        int c=178;
+        System.out.println(c==b);
+    }
 
 }
