@@ -14,7 +14,7 @@ package com.baseknow.faceTest;
  *
  *
  */
-public class JavaRunMachine {
+public class JavaRunMachine extends JavaMachineSuper {
 
 
     public static JavaRunMachine nn =new JavaRunMachine();
@@ -23,7 +23,7 @@ public class JavaRunMachine {
     public static  int b=9;
 
     static {
-        b=6;
+
         System.out.println("静态代码块");
         a++;
         b++;
@@ -32,18 +32,14 @@ public class JavaRunMachine {
 
     JavaRunMachine(){
         System.out.println("构造函数");
-        a++;
-        b++;
+        System.err.println(a++);
+        System.err.println(b++);
     }
     public static JavaRunMachine getInstance(){
+
         return nn;
     }
 
 
-    public static void main(String[] args) {
-        JavaRunMachine nn = getInstance();
-        System.out.println(nn.a);
-        System.out.println(nn.b);
 
-    }
 }

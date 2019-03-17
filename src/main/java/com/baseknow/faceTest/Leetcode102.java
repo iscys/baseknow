@@ -1,8 +1,6 @@
 package com.baseknow.faceTest;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -70,6 +68,16 @@ public class Leetcode102 {
       TreeNode right;
       TreeNode(int x) { val = x; }
   }
+
+
+    public static void main(String[] args) {
+
+        StringBuilder builder =new StringBuilder("abac");
+        StringBuilder reverse = builder.reverse();
+        String s = reverse.toString();
+
+        LinkedList l =new LinkedList();
+    }
 
 
 }
