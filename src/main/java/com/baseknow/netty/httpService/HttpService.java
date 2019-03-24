@@ -40,7 +40,6 @@ public class HttpService {
                             ChannelPipeline pipeline = ch.pipeline();
                             pipeline.addLast("decode",new HttpRequestDecoder())
                                     .addLast("encode",new HttpResponseEncoder())
-
                                     .addLast("myself",new MyHttpHandler());
 
                         }

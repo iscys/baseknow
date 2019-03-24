@@ -17,7 +17,7 @@ public class MyHttpHandler extends SimpleChannelInboundHandler<HttpObject> {
         Channel channel = ctx.channel();
         boolean keepaLive = HttpUtil.isKeepAlive(httpRequest);
         FullHttpResponse httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-        httpResponse.content().writeBytes("hello".getBytes());
+        httpResponse.content().writeBytes("<h1>hello</h1>".getBytes());
         httpResponse.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html;charset=UTF-8");
         httpResponse.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, httpResponse.content().readableBytes());
         if (keepaLive) {
