@@ -8,6 +8,7 @@ import com.google.gson.JsonParser;
 import java.util.HashMap;
 
 /**
+ * goole json 使用转换
  * gson json转换器
  * author cys
  */
