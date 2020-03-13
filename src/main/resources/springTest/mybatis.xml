@@ -16,7 +16,7 @@
     
   
 	<bean class="mybatis.MapperScanConfig">
-		<property name="basePackage" value="com.baseknow.dubbo" />
+		<property name="basePackage" value="com.baseknow" />
 	</bean>
 	<context:component-scan base-package="mybatis" />
    

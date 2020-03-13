@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-            http://code.alibabatech.com/schema/dubbo  
+            http://code.alibabatech.com/schema/dubbo
             http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="hm-service-cart"  />
 
-	<!-- 使用zookeeper注册中心暴露服务地址 -->
-	<!-- 开发 -->
-	<!--<dubbo:registry protocol="zookeeper" address="10.0.96.19:2181" check="false" />-->
-	<!-- 测试 -->
+
 	<dubbo:registry protocol="zookeeper" address="47.95.245.138:2181" check="false" />
 	 <!--<dubbo:registry protocol="zookeeper" address="10.5.6.139:2181,10.5.6.140:2181,10.5.6.141:2181" check="false" />-->
    <!--<dubbo:registry protocol="zookeeper" address="10.5.6.66:2181" check="false" />-->
@@ -26,27 +23,19 @@
 	<!--<dubbo:monitor address="10.0.96.19:7070" />-->
 	 
 	<!-- 用dubbo协议在20880端口暴露服务 -->
-	<dubbo:protocol name="dubbo" port="20881" />
+	<dubbo:protocol name="dubbo" port="20881" transporter="mina" />
 
 	<bean id="dubboService" class="com.baseknow.dubbo.DubboServiceImpl"></bean>
 
 	<dubbo:service interface="com.baseknow.dubbo.IdubboService" ref="dubboService"
 		timeout="50000"
-		executes="1000"
+		executes="1000" scope="remote"
 		/>
-	<bean id="spi" class="com.baseknow.spi.OptimusPrime"></bean>
-	<dubbo:service interface="com.baseknow.spi.Robot" ref="spi"
-				   timeout="50000"
-				   executes="1000"
-	/>
-	<!--
-	<dubbo:reference
-        id="rPCLayoutProvider"
-        interface="com.huimai.service.rpc.IRPCLayoutProviderService"
-		timeout="50000"
-     />
-       -->
 
-	
+	<bean id="dubboService2" class="com.baseknow.dubbo.AiImpl"></bean>
+	<dubbo:service interface="com.baseknow.dubbo.Ai" ref="dubboService2"
+				   timeout="50000"
+				   executes="1000" scope="remote"
+	/>
 
 </beans>  

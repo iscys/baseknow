@@ -42,7 +42,7 @@ public class SqlSessionFactory implements FactoryBean , InitializingBean {
 
     public void buildSqlSessionFactory() throws Exception {
         MapperConfiguration config =new MapperConfiguration();
-        LinkedList<File> files = ResourceUtils.scanPackage(mapperLocations,ResourceUtils.MATCH_XML);
+        LinkedList<File> files = ResourceUtils.scanPackage(mapperLocations);
         for(File parseXml :files){
             XmlBuilder xmlBuilder =new XmlBuilder(new FileInputStream(parseXml),config);
             xmlBuilder.parse();

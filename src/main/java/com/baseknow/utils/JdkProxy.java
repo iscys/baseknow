@@ -14,20 +14,23 @@ import java.lang.reflect.Proxy;
 public class JdkProxy implements InvocationHandler ,Serializable {
 
 	private static final long serialVersionUID = -4467164789570764661L;
-	
+
+
 	@SuppressWarnings("unchecked")
-	public /**static**/ <T> T newProxy(Class<T> myInterfaces) {
+	public static <T> T newProxy(Class<T> myInterfaces) {
 		ClassLoader classLoader = myInterfaces.getClassLoader();
 		Class<?>[] interfaces =new Class[]{myInterfaces};
-		//JdkProxy proxy =new JdkProxy();
-		return (T) Proxy.newProxyInstance(classLoader, interfaces, this);
+		JdkProxy proxy =new JdkProxy();
+		return (T) Proxy.newProxyInstance(classLoader, interfaces, proxy);
 		
 	}
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		
-		return null;
+
+		String name = method.getName();
+
+		return name;
 	}
 
 }

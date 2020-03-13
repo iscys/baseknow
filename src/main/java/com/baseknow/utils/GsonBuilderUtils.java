@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -61,13 +62,13 @@ public class GsonBuilderUtils {
      * @param args
      */
     public static void main(String[] args) {
-        HashMap<String,String> map =new HashMap<>();
-        map.put("1","d");
-        map.put("2","f");
-        String s = GsonBuilderUtils.toJson(map);
+
+        ArrayList<String> list =new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        String s = GsonBuilderUtils.toJson(list);
         System.out.println(s);
-        JsonObject parse = GsonBuilderUtils.parse(s);
-        System.out.println(parse.get("1"));
     }
 
 }

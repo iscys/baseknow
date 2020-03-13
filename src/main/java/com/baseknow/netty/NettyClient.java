@@ -61,7 +61,9 @@ public class NettyClient {
             channel = connect.sync().channel();
 
 
-        }catch(Exception e){}
+        }catch(Exception e){
+            System.out.println("error");
+        }
 
     }
 
@@ -90,5 +92,12 @@ public class NettyClient {
 
     public void destory(){
         event.shutdownGracefully();
+    }
+
+
+    public static void main(String[] args) throws Exception{
+         NettyClient client = new NettyClient("localhost", 9011);
+
+
     }
 }

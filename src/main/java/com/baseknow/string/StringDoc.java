@@ -1,5 +1,7 @@
 package com.baseknow.string;
 
+import java.util.LinkedList;
+
 public class StringDoc {
 
 	/**

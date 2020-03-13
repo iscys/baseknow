@@ -13,7 +13,8 @@
 	</if>
 		<if test="is_effective != null and is_effective != '' ">
 		and is_effective=#{is_effective}
-		</if>	
+		</if>
+		ss
     </select>
     
     

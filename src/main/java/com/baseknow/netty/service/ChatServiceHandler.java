@@ -18,35 +18,22 @@ import java.util.concurrent.Executors;
  */
 public class ChatServiceHandler extends SimpleChannelInboundHandler<Object> {
     private  ExecutorService excutor = Executors.newFixedThreadPool(10);
-    //netty 提供的 可以获得当前channel 组,用来保存一个一个的channel 对象，这个很重要
-    private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-
-        Channel channel =ctx.channel();
-        Invocations invoke = (Invocations) msg;
-
-        System.out.println(invoke.method);
-//		for(Channel ch:channelGroup) {
-//			if(ch==channel) {
-//				//如果是自己发的消息的话
-//				ch.writeAndFlush("【自己的消息】msg="+msg);
-//			}
-//			else {
-//				//群发消息
-//				ch.writeAndFlush(channel.remoteAddress()+"msg="+msg);
-//			}
-        //	}
+        System.out.println("111111111" +msg);
+        ctx.channel().writeAndFlush("send Message id =");
+        /**
         excutor.submit(()->{
-            ResultResponse result =new ResultResponse();
-            result.setResult("1");
-            result.setId(invoke.getId());
-            System.out.println(Thread.currentThread().getName()+":"+invoke.getId());
-            ctx.channel().writeAndFlush(result);
-        });
+            int i=0;
+            for(;;){
+                Thread.sleep(1000);
+                i++;
+                ctx.channel().writeAndFlush("send Message id ="+i);
+            }
 
+        });
+**/
 
     }
 
@@ -56,13 +43,6 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
 
-        System.err.println("新来了一位连接者"+ctx.channel().id().asShortText());//channel 的id，是唯一的
-        Channel channel = ctx.channel();
-        //进行广播。channelGroup.writeAndFlush 会对所有的channel进行消息的发送与广播
-        channelGroup.writeAndFlush("【服务器】-"+channel.remoteAddress()+"进入了聊天室");
-        channelGroup.add(channel);
-
-        //ctx.channel().write()
 
 
     }

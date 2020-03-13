@@ -1,29 +1,30 @@
 package com.baseknow.faceTest;
 
-/**
- * 单例模式
- */
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.util.LinkedHashMap;
+
 public class SingalModel {
 
- private static SingalModel singalModel ;
+    public static void main(String[] args) {
 
- public synchronized  static SingalModel getInstance(){
-    if(singalModel ==null)
-     singalModel =new SingalModel();
-
-     return singalModel;
- }
-
-    /**
-     * 内部类的方式
-     */
- static  class Instance{
-     static {
-         System.out.println("1111");
-     }
-     private static SingalModel getInsatnce =new SingalModel();
- }
+        getCon();
 
 
+    }
 
+
+    public static Connection getCon() {//得到数据库连接的方法
+        try {
+            Context initial = new InitialContext();//得到上下文引用
+            DataSource ds = (DataSource) initial.lookup("java:comp/env/jdbc/connectdb");
+            Connection con = ds.getConnection();//得到数据库连接
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;//返回数据库连接
+
+    }
 }

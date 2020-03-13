@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 public class MybatisProxy implements InvocationHandler {
 
-    public static <T> T getProxy(Class<T> interfaceClass){
+    public static<T> T getProxy(Class<T> interfaceClass){
 
         ClassLoader classLoader = interfaceClass.getClassLoader();
         Class<?>[] interfaces =new Class[]{interfaceClass};

@@ -17,10 +17,7 @@ public class ChatClientMyHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ResultResponse ins = (ResultResponse) msg;
-        System.out.println(ctx.channel());
-        System.out.println("消息接收");
-        DefaultNettyFuture.setResponse(ins);
+        System.out.println("消息接收" +msg);
 
 
 

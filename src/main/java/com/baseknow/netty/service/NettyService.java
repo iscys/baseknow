@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
 
 public class NettyService {
 
@@ -29,7 +30,6 @@ public class NettyService {
     public void doOpen() throws Exception{
 
         try{
-
             boostrap.group(boosGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChatServiceInitializer());
@@ -48,7 +48,8 @@ public class NettyService {
 
     public static void main(String[] args) throws Exception {
 
-
+        NettyService service =new NettyService(9011);
+        service.doOpen();
 
 
     }

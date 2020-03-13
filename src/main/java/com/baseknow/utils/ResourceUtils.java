@@ -197,7 +197,14 @@ public class ResourceUtils {
 
 
 	public static void main(String[] args)throws Exception {
-		System.out.println(resolveBasePackage("com.baseknow.array"));
+
+		ClassLoader loader = ResourceUtils.class.getClassLoader();
+		Enumeration<URL> com = ClassLoader.getSystemResources("com/baseknow");
+
+		while (com.hasMoreElements()){
+			URL url = com.nextElement();
+			System.out.println(url.toString());
+		}
 
 
 	}

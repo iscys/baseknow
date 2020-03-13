@@ -20,8 +20,8 @@ import java.nio.file.StandardOpenOption;
 public class Niodoc {
 	
 	public static void main(String[] args)throws Exception {
-		
-	
+
+
 		charset();
 	}
 

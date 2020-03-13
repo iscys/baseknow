@@ -3,18 +3,15 @@ package com.baseknow.list;
 
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.Collectors;
 
 public class ArrayListDoc {
 
-	
-	public static void main(String[] args) {
-		List a =new LinkedList();
-		List b =a;
-		System.out.println(a==b);
-		b=null;
-		System.out.println(b);
-		System.out.println(a);
 
+	public static void main(String[] args) {
+	ArrayList<String> list =new ArrayList<>();
+	list.stream()
+			.map(x->x="11").collect(Collectors.toList());
 
 
 	}
