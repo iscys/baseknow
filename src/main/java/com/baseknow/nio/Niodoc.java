@@ -21,8 +21,19 @@ public class Niodoc {
 	
 	public static void main(String[] args)throws Exception {
 
+		String msg = "cys is sb";
+		ByteBuffer allocate = ByteBuffer.allocate(4+msg.getBytes().length);
+		allocate.putInt(msg.getBytes().length);
+		allocate.put(msg.getBytes());
+		allocate.flip();
 
-		charset();
+		 int anInt = allocate.getInt();
+		System.out.println(anInt);
+		byte [] data =new byte[msg.getBytes().length];
+		allocate.get(data);
+		System.out.println(new String(data));
+		System.out.println(allocate.limit());
+
 	}
 
 	public  static void method() throws IOException {
@@ -63,4 +74,6 @@ public class Niodoc {
 		CharBuffer cha = forName.decode(byteb);
 		System.out.println(new String(cha.array()));
 	}
+
+
 }
