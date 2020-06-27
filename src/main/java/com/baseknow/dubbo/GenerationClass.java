@@ -1,6 +1,8 @@
 package com.baseknow.dubbo;
 
-import com.alibaba.dubbo.common.extension.Adaptive;
+
+
+import org.apache.dubbo.common.extension.Adaptive;
 
 import java.lang.reflect.Method;
 

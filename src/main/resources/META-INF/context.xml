@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/sms">
+    <Resource name="jdbc/connectdb"
+              type="javax.sql.DataSource" driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://127.0.0.1:3306/sms?useUnicode=true&amp;characterEncoding=utf-8"
+              username="root"
+              password="123123"
+              maxActive="10"
+              maxIdle="5"
+              testWhileIdle = "true"
+              timeBetweenEvictionRunsMillis = "20000"
+              validationQuery="select 1"/>
+</Context>

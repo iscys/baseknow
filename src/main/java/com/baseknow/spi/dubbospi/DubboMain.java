@@ -1,6 +1,6 @@
 package com.baseknow.spi.dubbospi;
 
-import com.alibaba.dubbo.common.extension.ExtensionLoader;
+import org.apache.dubbo.common.extension.ExtensionLoader;
 
 import java.lang.reflect.Constructor;
 

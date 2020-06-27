@@ -97,15 +97,10 @@
 		
 		 <!-- dubbo相关 -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
-            <version>2.5.4</version>
-            <exclusions>
-            	<exclusion>
-            		<groupId>org.springframework</groupId>
-            		<artifactId>spring</artifactId>
-            	</exclusion>
-            </exclusions>
+            <version>2.7.7</version>
+
         </dependency>
 		<dependency>
 			<groupId>com.101tec</groupId>
@@ -138,26 +133,26 @@
 	
 	    <groupId>org.springframework</groupId> 
 	    <artifactId>spring-context-support</artifactId> 
-	    <version>4.0.2.RELEASE</version>
+	    <version>5.1.4.RELEASE</version>
 	    
 		</dependency>
 		
 			<dependency> 
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-jdbc</artifactId> 
-		      <version>4.0.2.RELEASE</version>
+		      <version>5.1.4.RELEASE</version>
 		  
 		</dependency> 
 			
 		<dependency> 
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-orm</artifactId> 
-		     <version>4.0.2.RELEASE</version>
+		     <version>5.1.4.RELEASE</version>
 		</dependency> 
 		  <dependency> 
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-web</artifactId> 
-		      <version>4.0.2.RELEASE</version>
+		      <version>5.1.4.RELEASE</version>
 		
 		</dependency> 
 		
@@ -165,7 +160,7 @@
 		
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-webmvc</artifactId> 
-		  <version>4.0.2.RELEASE</version>
+		  <version>5.1.4.RELEASE</version>
 		
 		</dependency>
 		
@@ -173,26 +168,26 @@
 		
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-aop</artifactId> 
-		    <version>4.0.2.RELEASE</version>
+		    <version>5.1.4.RELEASE</version>
 		
 		</dependency>
 		<dependency> 
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-aspects</artifactId> 
-		     <version>4.0.2.RELEASE</version>
+		     <version>5.1.4.RELEASE</version>
 		</dependency>
 		
 		<dependency> 
 		    <groupId>org.springframework</groupId> 
 		    <artifactId>spring-beans</artifactId> 
-		    <version>4.0.2.RELEASE</version>
+		    <version>5.1.4.RELEASE</version>
 		</dependency>
 	
 			<dependency> 
 	
 	    <groupId>org.springframework</groupId> 
 	    <artifactId>spring-context</artifactId> 
-	     <version>4.0.2.RELEASE</version>
+	     <version>5.1.4.RELEASE</version>
 		</dependency>
 
 	  <dependency>

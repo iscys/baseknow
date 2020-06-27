@@ -1,5 +1,7 @@
 package com.baseknow.jvm;
 
+import java.nio.channels.Selector;
+
 /**
  * 
  * 堆分配参数
@@ -16,17 +18,20 @@ public class Jvm1 {
 	Jvm1(){
 		//byte [] by =new byte[1024*8];
 	}
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws Exception {
+
+		StringBuilder builder =new StringBuilder();
+		 String qwe = builder.append("j拘束").toString();
+		System.out.println(qwe.intern()==qwe);
 		
 		System.out.println("总共内存"+Runtime.getRuntime().totalMemory());
 		System.out.println("最大内存"+Runtime.getRuntime().maxMemory());
 		System.out.println("空闲内存"+Runtime.getRuntime().freeMemory());
 
 
+		final Selector open = Selector.open();
 
 
-
-		
 		byte [] by =new byte[1*1024*1024];
 		System.out.println("分配了1m");
 		System.out.println("总共内存"+Runtime.getRuntime().totalMemory());
