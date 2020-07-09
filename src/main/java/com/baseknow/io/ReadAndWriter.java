@@ -1,10 +1,9 @@
 package com.baseknow.io;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.apache.commons.io.IOUtils;
 
@@ -16,12 +15,38 @@ import com.baseknow.utils.ResourceUtils;
  *
  */
 public class ReadAndWriter {
+
+
 	
 	public static void main(String[] args) throws Exception {
-		
-		haveBuffer();
 
-		
+		ReentrantReadWriteLock lock =new ReentrantReadWriteLock();
+		ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
+		ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
+
+		new Thread(()->{
+			try {
+				readLock.lock();
+				Thread.sleep(100000);
+			}catch (Exception e){
+
+			}finally {
+				readLock.unlock();
+			}
+		}).start();
+
+	new Thread(()->{
+			try {
+				writeLock.lock();
+				Thread.sleep(100000);
+			}catch (Exception e){
+
+			}finally {
+				writeLock.unlock();
+			}
+		}).start();
+
+
 	}
 
 	/**
